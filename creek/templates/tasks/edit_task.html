@@ -1,0 +1,18 @@
+{% from "util.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<div class="row well">
+  <div class="span4">
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ render_field(form.taskname, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.task, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.roles, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.parallel, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.sendmail, label=True, class="input-xlarge", autofocus="autofocus") }}
+        <button class="btn" type="submit">Save task</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% from "util.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+    <h1>Tasks </h1>
+    <div class="row-fluid well">
+        {% if tasks %}
+          {% for task in tasks %}
+                <div class="span4">
+                     <h2>{{ task.taskname }}</h2>
+                     <dl class="dl-horizontal">
+                          <dt>Task</dt>
+                          <dd>{{ task.task }}</dd>
+                          <dt>Task roles</dt>
+                          <dd>{{ task.roles }}</dd>
+                          <dt>Parallel execution</dt>
+                          <dd>{{ task.parallel }}</dd>
+                          <dt>Mail notification</dt>
+                          <dd>{{ task.sendmail }}</dd>
+                      </dl>
+                      <a class="btn" href="/view/task/{{ task.id }}">View task »</a>
+             </div>
+          {% endfor %}
+        {% else %}
+              <h2>No tasks added yet. </h2>
+              <a class="btn" href="/add-task">Add new task »</a>
+        {% endif %}
+    </div>
+{% endblock %} 

@@ -1,0 +1,19 @@
+{% from "util.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+<div class="row well">
+  <div class="span4">
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ render_field(form.name, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.description, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.match, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.ip, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.url, label=True, class="input-xlarge", autofocus="autofocus") }}
+        {{ render_field(form.enabled, label=True, class="input-xlarge", autofocus="autofocus") }}
+        <button class="btn" type="submit">Create server</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

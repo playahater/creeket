@@ -1,0 +1,29 @@
+{% from "util.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+    <h1>Servers </h1>
+    <div class="row-fluid well">
+        {% if servers %}
+          {% for server in servers %}
+                <div class="span4">
+                     <h2>{{ server.name }}</h2>
+                     {{ server.description|safe }} <br/>
+                     <dl class="dl-horizontal">
+                          <dt>HTML Match string</dt>
+                          <dd>{{ server.match }}</dd>
+                          <dt>Server IP address</dt>
+                          <dd>{{ server.ip }}</dd>
+                          <dt>Server URL</dt>
+                          <dd>{{ server.url }}</dd>
+                          <dt>Server enabled</dt>
+                          <dd>{{ server.enabled }}</dd>
+                      </dl>
+                      <a class="btn" href="/view/server/{{ server.id }}">View details »</a>
+             </div>
+          {% endfor %}
+        {% else %}
+              <h2>No servers added yet. </h2>
+              <a class="btn" href="/add-server">Add new server »</a>
+        {% endif %}
+    </div>
+{% endblock %}

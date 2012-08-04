@@ -1,0 +1,20 @@
+{% from "util.html" import render_field %}
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row-fluid well">
+      <div id="position"></div>
+      <div="row">
+        <div class="span6">
+             <h2>Login form</h2>
+              <form class="form-actions" method="post">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.username, label=True, class="input-xlarge", autofocus="autofocus") }}
+                {{ render_field(form.password, label=True, class="input-xlarge", autofocus="autofocus") }}
+                <button class="btn" type="submit">Login</button>
+              </form>
+        </div>
+      </div>
+    </div>
+{% endblock %} 

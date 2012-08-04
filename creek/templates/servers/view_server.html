@@ -1,0 +1,23 @@
+{% from "util.html" import render_field %}
+{% extends "base.html" %}
+{% block content %}
+    <div class="row-fluid well">
+      <div id="position"></div>
+      <div="row">
+              <div class="span6"><h3>{{ entry.name }}</h3>
+                   {{ entry.description|safe }} <br/>
+                   <dl class="dl-horizontal">
+                        <dt>Match string</dt>
+                        <dd>{{ entry.match }}</dd>
+                        <dt>Server IP address</dt>
+                        <dd>{{ entry.ip }}</dd>
+                        <dt>Server URL</dt>
+                        <dd>{{ entry.url }}</dd>
+                        <dt>Server enabled</dt>
+                        <dd>{{ entry.enabled }}</dd>
+                    </dl>
+              </div>
+              <a class="btn" href="/edit/server/{{ entry.id }}">Edit server details »</a>
+      </div>
+    </div>
+{% endblock %}

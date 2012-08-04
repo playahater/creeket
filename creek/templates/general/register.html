@@ -1,0 +1,22 @@
+{% from "util.html" import render_field %}
+
+{% extends "base.html" %} 
+
+{% block content %}
+    <div class="row-fluid well">
+      <div id="position"></div>
+      <div="row">
+        <div class="span6">
+             <h2>Registration form</h2>
+              <form class="form-actions" method="post">
+                  {{ form.hidden_tag() }}
+                  {{ render_field(form.username, label=True, class="input-xlarge", autofocus="autofocus") }}
+                  {{ render_field(form.password, label=True, class="input-xlarge", autofocus="autofocus") }}
+                  {{ render_field(form.confirm, label=True, class="input-xlarge", autofocus="autofocus") }}
+                  {{ render_field(form.email, label=True, class="input-xlarge", autofocus="autofocus") }}
+                  <button class="btn" type="submit">Register</button>
+              </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}

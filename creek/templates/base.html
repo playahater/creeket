@@ -1,0 +1,94 @@
+{% from "util.html" import nav_link with context %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+            <meta http-equiv="content-language" content="en" />
+            <title>creek.io monitoring automation</title>
+            <!--[if lt IE 9]>
+                <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            <link href="{{ static('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+            <link href="{{ static('favicon.ico') }}" rel="shortcut icon">
+            <link href="{{ static('style.css') }}" rel="stylesheet">
+
+            <script type=text/javascript>
+              $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            </script>
+
+
+            <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+            <script src="{{ static('bootstrap/js/bootstrap.min.js') }}"></script>
+            <script src="{{ static('bootstrap/js/bootstrap-dropdown.js') }}"></script>
+            <script src="{{ static('bootstrap/js/bootstrap-alert.js') }}"></script>
+            <script src="{{ static('bootstrap/js/bootstrap-init.js') }}"></script>
+            <meta name="keywords" content="flask, python, server, monitoring, automation, fabric, git" />
+            <meta name="description" content="Server monitoring automation" />
+
+        {% endblock %}       
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="{{ url_for('dashboard') }}">creek.io</a>
+                    <div class="nav-collapse">
+                            <ul class="nav">
+                                {{ nav_link('Dashboard', 'dashboard') }}
+                                {{ nav_link('Servers', 'servers') }}
+                                {{ nav_link('Tasks', 'tasks') }}
+                                {{ nav_link('Deploy', 'deploy') }}
+                                <li class="divider-vertical"></li>
+                                <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Add new ..<b class="caret"></b></a>
+                                  <ul class="dropdown-menu">
+                                      {{ nav_link('Server', 'add_server') }}
+                                      <li class="divider"></li>
+                                      {{ nav_link('Task', 'add_task') }}
+                                  </ul>
+                                </li>
+                                <li class="divider-vertical"></li>
+                            </ul>
+                            <ul class="nav pull-right">
+                                <li class="dropdown">
+                                    {% if current_user %}
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{current_user|safe}} <b class="caret"></b></a>
+                                    {% else %}
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+                                    {% endif %}
+                                    <ul class="dropdown-menu">
+                                        {% if current_user.is_authenticated() %}
+                                            {{ nav_link('Reset Password', 'resetpassword') }}
+                                            {{ nav_link('Logout', 'logout') }}
+                                            <li class="divider"></li>
+                                            <li><a href="/admin">Admin</a></li>                                        
+                                        {% else %}
+                                          {{ nav_link('Register', 'register') }}
+                                          {{ nav_link('Login', 'login') }}
+                                        {% endif %}
+                                    </ul>
+                                  </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {% for message in get_flashed_messages() %}
+            <div class="alert">
+                {{ message }}
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+            </div>
+            {% endfor %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
