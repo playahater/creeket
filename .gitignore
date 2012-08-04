@@ -1,16 +1,31 @@
-local_settings.py
+*.py[co]
 **.bak
-**.pyc
 **.swp
 .Python
-bin/
-include/
-lib/
-src/
-.enter.tcsh
-.enter.local.tcsh
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+local_settings.py
 creek/creek.db
 
-# Don't loose ssl.key and ssl.cert... don't add them either.
-#ssl.cert
-#ssl.key
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+#Translations
+*.mo
+
+#Mr Developer
+.mr.developer.cfg
